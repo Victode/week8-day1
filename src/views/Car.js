@@ -20,6 +20,7 @@ function Cars() {
             "model": "Explorer",
             "color": "Silver",
             "year": 2018
+            
         }
     },
     {

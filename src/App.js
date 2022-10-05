@@ -6,6 +6,8 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+import CarSingle from './views/CarSingle';
+import Home from './views/Home';
 
 function App() {
   return (
@@ -25,7 +27,10 @@ function App() {
         </ul>
       </nav>
       <Routes>
-        <Route path="/" element={<h1>Home</h1>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/car">
+          <Route path=":id" element={<CarSingle />} />
+        </Route>
         <Route path="/inventory" element={<Cars />} />
         <Route path="/profile" element={<ProfileView />} />
       </Routes>
