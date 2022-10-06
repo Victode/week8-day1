@@ -10,11 +10,9 @@ export const DataProvider = function(props) {
     const db = getFirestore()
 
     useEffect(() => {
-
         const getCars = async function() {
-            const collectionRef = collectionGroup(db, 'car')
-            const q = query(collectionRef, orderBy('dateCreated', 'desc'))
-            const collectionSnap = await getDocs(q)
+            const collectionRef = collection(db, 'car')
+            const collectionSnap = await getDocs(collectionRef)
 
             const carsArr = []
 
@@ -30,7 +28,6 @@ export const DataProvider = function(props) {
         }
         getCars()
     }, [user])
-    
     
     
     const getCar = async function(id, callback) {
