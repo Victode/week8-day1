@@ -1,6 +1,8 @@
 import Profile from "../components/Profile"
 import { useContext } from 'react'
 import { AuthContext } from '../contexts/AuthProvider'
+import PostList from '../components/PostList'
+import PostForm from "../components/PostForm"
 
 export default function ProfileView() {
     const { user } = useContext(AuthContext)
@@ -15,6 +17,8 @@ export default function ProfileView() {
                         <p>This profile page is still currently under maintenance</p>
                         <p>In the meantime, here's a counter to help pass the time </p>
                         <Profile />
+                        <PostForm />
+                        <PostList />
                     </>
                 )
                 :

@@ -5,6 +5,7 @@ import { AuthContext } from './contexts/AuthProvider';
 import { useContext } from 'react';
 import CarSingle from './views/CarSingle';
 import Home from './views/Home';
+import PostSingle from './views/PostSingle';
 
 function App() {
   const { login, logout, user } = useContext(AuthContext)
@@ -37,8 +38,12 @@ function App() {
         <Route path="/car">
           <Route path=":id" element={<CarSingle />} />
         </Route>
+        <Route path="/profile">
+          <Route index element={<ProfileView />} />
+          <Route path=":id" element={<PostSingle />} />
+        </Route>
         <Route path="/inventory" element={<Cars />} />
-        <Route path="/profile" element={<ProfileView />} />
+
       </Routes>
     </BrowserRouter>
   )
