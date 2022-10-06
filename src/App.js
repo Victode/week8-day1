@@ -12,19 +12,19 @@ import Home from './views/Home';
 function App() {
   return (
     <BrowserRouter>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/inventory">Car Inventory</Link>
-          </li>
-          <li>
-            <Link to="/profile">Profile</Link>
-          </li>
 
-        </ul>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a className="navbar-brand" href="#">Navbar</a>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav">
+          <Link classname="nav-link" to="/">Home</Link>
+          {/* <Link to="/inventory">Car Inventory</Link> */}
+          <Link classname="nav-link" to="/profile">Profile</Link>
+          </div>
+        </div>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />

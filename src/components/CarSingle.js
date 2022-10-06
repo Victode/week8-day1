@@ -24,7 +24,6 @@ export default function Car(props) {
                         <p>Price: { props.car.selling_price }</p>
                         <p>Transmission: { props.car.transmission }</p>
                         <p>Owner History: { props.car.owner }</p>
-                        <p>Seats: { props.car.seats }</p>
                     </div>
                 )
                 :

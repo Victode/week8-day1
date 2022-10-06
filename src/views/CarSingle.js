@@ -1,24 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Car from '../components/Car';
+import { DataContext } from '../contexts/DataProvider';
 
 export default function CarSingle() {
     const [car, setCar] = useState({})
     const { id } = useParams()
-
+    const { getCar } = useContext(DataContext)
 
     useEffect(() => {
-        fetch(`https://my-json-server.typicode.com/Llang8/cars-api/cars/${id}`)
-            .then((res) => res.json())
-            .then((data) => {
-                setCar(data)
-                console.log(data)
-            })
+        getCar(id, setCar)
     }, [])
 
     return (
         <div>
-            <h1>A good choice! I can see you driving around in that thing</h1>
+            <h1>A good choice! I can see you driving around in that thing {id}</h1>
             <Car car={car} />
         </div>
     )
