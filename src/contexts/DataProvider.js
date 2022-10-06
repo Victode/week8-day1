@@ -1,17 +1,20 @@
 import { useState, useEffect, useContext, createContext } from 'react'
-import { getFirestore, getDoc, getDocs, collection, doc } from '@firebase/firestore'
+import { getFirestore, getDoc, getDocs, collection, collectionGroup, doc, addDoc, Timestamp, query, orderBy } from '@firebase/firestore'
+import { AuthContext } from './AuthProvider'
 
 export const DataContext = createContext()
 
 export const DataProvider = function(props) {
     const [cars, setCars] = useState([])
+    const { user } =useContext(AuthContext)
     const db = getFirestore()
 
     useEffect(() => {
 
         const getCars = async function() {
-            const collectionRef = collection(db, 'car')
-            const collectionSnap = await getDocs(collectionRef)
+            const collectionRef = collectionGroup(db, 'car')
+            const q = query(collectionRef, orderBy('dateCreated', 'desc'))
+            const collectionSnap = await getDocs(q)
 
             const carsArr = []
 
@@ -26,8 +29,10 @@ export const DataProvider = function(props) {
             setCars(carsArr)
         }
         getCars()
-    }, [])
-
+    }, [user])
+    
+    
+    
     const getCar = async function(id, callback) {
 
         const docRef = doc(db, "car", id)
@@ -47,7 +52,7 @@ export const DataProvider = function(props) {
         callback(data)
         console.log(data)
     }
-
+    
     const value = {
         cars: cars,
         getPokemon: getPokemon,

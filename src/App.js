@@ -1,15 +1,13 @@
 import Cars from './views/Car';
 import ProfileView from './views/Profile';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link
-} from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { AuthContext } from './contexts/AuthProvider';
+import { useContext } from 'react';
 import CarSingle from './views/CarSingle';
 import Home from './views/Home';
 
 function App() {
+  const { login, logout, user } = useContext(AuthContext)
   return (
     <BrowserRouter>
 
@@ -20,9 +18,17 @@ function App() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-          <Link classname="nav-link" to="/">Home</Link>
+          <Link className="nav-link" to="/">Home</Link>
           {/* <Link to="/inventory">Car Inventory</Link> */}
-          <Link classname="nav-link" to="/profile">Profile</Link>
+          <Link className="nav-link" to="/profile">Profile</Link>
+          </div>
+          <div className="navbar-nav ml-auto">
+            {
+              (user.loggedIn) ?
+                <button onClick={logout} className="btn btn-primary mx-4">Logout</button>
+                :
+                <button onClick={login} className="btn btn-primary mx-4">Login</button>
+            }
           </div>
         </div>
       </nav>
